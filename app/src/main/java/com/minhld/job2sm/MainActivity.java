@@ -143,8 +143,9 @@ public class MainActivity extends AppCompatActivity {
                 // 2. dispatch jobs to clients
                 String downloadPath = Utils.getDownloadPath();
                 String dataPath = downloadPath + "/mars.jpg";
-                String jobPath = downloadPath + "/Job.jar";
-                jobHandler.dispatchJob(useCluster, dataPath, jobPath);
+                //String jobPath = downloadPath + "/Job.jar";
+                String jobName = "blur";
+                jobHandler.dispatchJob(useCluster, dataPath, jobName);
             }
         });
 

@@ -57,7 +57,7 @@ public class JobDispatcher extends AsyncTask {
                     // create job data
                     splitObject = dataParser.getSinglePart(orgObj, deviceNum, i);//Bitmap.createBitmap(orgBmp, (pieceWidth * i), 0, pieceWidth, orgBmp.getHeight());
                     byte[] objectBytes = dataParser.parseObjectToBytes(splitObject);
-                    jobData = new JobData(i, objectBytes, new File(jobPath));
+                    jobData = new JobData(i, objectBytes, jobPath.getBytes());
 
                     // no longer need this data
                     dataParser.destroy(splitObject);

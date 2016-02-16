@@ -76,7 +76,10 @@ public class JobExecutor extends ClassLoader implements Runnable {
 
             // initiate the Job algorithm class & execute it
             // suppose that job was download to Download folder in local device
-            String jobPath = Utils.getDownloadPath() + "/" + Utils.JOB_FILE_NAME;
+            //String jobPath = Utils.getDownloadPath() + "/" + Utils.JOB_FILE_NAME;
+
+            // download job
+            String jobPath = Utils.downloadSJP(new String(this.jobData.jobClass));
             resObj = Utils.runRemote(this.context, jobPath, orgObj, dataParser.getDataClass());
 
             // release the original data

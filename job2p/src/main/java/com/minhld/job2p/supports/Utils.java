@@ -5,6 +5,9 @@ import android.os.Environment;
 
 import com.minhld.job2p.jobs.JobData;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -14,9 +17,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
@@ -62,7 +67,7 @@ public class Utils {
     public static final String JOB_EXEC_METHOD = "exec";
 
     public static final String MSG_ACK = "ACK";
-    public static final int MAX_ACK_SIZE = 1024;
+    public static final String SERVICE_MARKET = "http://129.123.7.61:3883/sm/service/";
 
     public enum SocketType {
         SERVER,
@@ -88,6 +93,36 @@ public class Utils {
      * this list will be used as iterating devices for sending, checking, etc...
      */
     public static ArrayList<XDevice> connectedDevices = new ArrayList<>();
+
+    public static String downloadSJP(String jobId) {
+        try {
+            InputStream in = new URL(Utils.SERVICE_MARKET + jobId).openStream();
+            String jsonJob = IOUtils.toString(in);
+            JSONObject jsonJobObject = new JSONObject(jsonJob);
+
+            String sjpUrl = "";
+            if (jsonJobObject.getJSONArray("sjp") != null) {
+                sjpUrl = jsonJobObject.getJSONArray("sjp").getString(0);
+                if (sjpUrl == null || sjpUrl.equals("")) {
+                    // no file to deal with
+                    return "";
+                }
+            }
+
+            String jobPath = Utils.getDownloadPath() + "/" + Utils.JOB_FILE_NAME;
+            File jobPathFile = new File(jobPath);
+            if (jobPathFile.exists()) {
+                jobPathFile.delete();
+            }
+            FileUtils.copyURLToFile(new URL(sjpUrl), jobPathFile);
+
+            return jobPath;
+        } catch (Exception e) {
+            // do nothing
+            e.printStackTrace();
+            return "";
+        }
+    }
 
     /**
      * this function converts a binary array into an instance of JobData,

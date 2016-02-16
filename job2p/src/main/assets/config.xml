@@ -1,0 +1,4 @@
+<app>
+    <role>client</role>
+    <availability-threshold>0.8</availability-threshold>
+</app>
