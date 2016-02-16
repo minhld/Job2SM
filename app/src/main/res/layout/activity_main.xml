@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_broadcast"
+        android:id="@+id/broadcastBtn"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/mainControlLayout"
+        android:layout_alignEnd="@+id/mainControlLayout" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send_job"
+        android:id="@+id/sayHiBtn"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:id="@+id/mainControlLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/broadcastBtn">
+
+        <ViewFlipper
+            android:id="@+id/viewFlipper"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:inAnimation="@android:anim/slide_in_left"
+            android:outAnimation="@android:anim/slide_out_right">
+
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/deviceList"
+                android:background="#eee"
+                android:layout_below="@+id/broadcastBtn"
+                android:layout_alignRight="@+id/infoTxt"
+                android:layout_alignEnd="@+id/infoTxt"
+                android:scrollIndicators="right" />
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <ImageView
+                    android:id="@+id/previewImage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:scaleType="fitCenter"/>
+
+                <Button
+                    android:id="@+id/closeViewBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="@string/close_button"
+                    android:layout_gravity="right|top" />
+
+            </FrameLayout>
+
+        </ViewFlipper>
+
+
+        <TextView
+            android:id="@+id/infoTxt"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#eee"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/deviceList"
+            android:gravity="bottom"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use Cluster"
+        android:id="@+id/useClusterCheck"
+        android:layout_alignTop="@+id/sayHiBtn"
+        android:layout_toRightOf="@+id/sayHiBtn"
+        android:layout_toEndOf="@+id/sayHiBtn"
+        android:layout_marginTop="10dp"
+        android:checked="true" />
+
+</RelativeLayout>

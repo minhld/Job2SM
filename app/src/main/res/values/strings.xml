@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Job2M</string>
+    <string name="action_settings">Settings</string>
+    <string name="text_broadcast">Search</string>
+    <string name="text_info_here">broadcast info</string>
+    <string name="title_activity_broadcast">BroadcastActivity</string>
+
+    <string name="send_job">Send Jobs</string>
+    <string name="title_activity_wi_fi_p2p_discovery">WiFi-Direct Discovery</string>
+    <string name="close_button">X</string>
+
+</resources>
