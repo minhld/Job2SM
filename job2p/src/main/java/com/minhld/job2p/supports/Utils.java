@@ -101,7 +101,7 @@ public class Utils {
             JSONObject jsonJobObject = new JSONObject(jsonJob);
 
             String sjpUrl = "";
-            if (jsonJobObject.getJSONArray("sjp") != null) {
+            if (jsonJobObject.getString("sjp") != null) {
                 sjpUrl = jsonJobObject.getString("sjp");
                 if (sjpUrl == null || sjpUrl.equals("")) {
                     // no file to deal with
