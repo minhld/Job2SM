@@ -1,6 +1,7 @@
 package com.minhld.job2p.supports;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Environment;
 
 import com.minhld.job2p.jobs.JobData;
@@ -121,6 +122,18 @@ public class Utils {
             // do nothing
             e.printStackTrace();
             return "";
+        }
+    }
+
+    public static void saveBmp2File(Bitmap output) {
+        try {
+            String outPath = Utils.getDownloadPath() + "/out.png";
+            FileOutputStream fOut = new FileOutputStream(outPath);
+            output.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+            fOut.flush();
+            fOut.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -82,4 +82,17 @@ public class JobData implements Serializable {
         }
     }
 
+    public byte[] toShortenByteArray() {
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] lengthBytes = Utils.intToBytes(this.byteData.length);
+            bos.write(lengthBytes, 0, lengthBytes.length);
+            bos.write(this.byteData, 0, this.byteData.length);
+            return bos.toByteArray();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new byte[0];
+        }
+    }
+
 }

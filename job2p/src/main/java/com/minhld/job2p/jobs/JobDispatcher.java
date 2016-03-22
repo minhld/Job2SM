@@ -67,12 +67,14 @@ public class JobDispatcher extends AsyncTask {
                     if (this.useCluster) {
                         if (i == 0) {
                             // do it at server
-                            this.socketHandler.obtainMessage(Utils.MESSAGE_INFO, "[server] do own job #" + i);
+                            this.socketHandler.obtainMessage(Utils.MESSAGE_INFO, "[server] do own job #" + i).sendToTarget();
                             new Thread(new JobExecutor(this.context, this.socketHandler, dataParser, jobData)).start();
                         } else {
                             // dispatch this one to client to resolve it
                             // it should be 32288 bytes to be sent
-                            byte[] jobBytes = jobData.toByteArray();
+                            byte[] jobBytes = jobData.toShortenByteArray();
+                            this.socketHandler.obtainMessage(Utils.MESSAGE_INFO, "[server] sending the job #" + i +
+                                                            " (" + jobBytes.length + " bytes)").sendToTarget();
                             this.broadcaster.sendObject(jobBytes, i);
                         }
                     } else {

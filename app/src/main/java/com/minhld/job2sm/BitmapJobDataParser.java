@@ -37,7 +37,7 @@ public class BitmapJobDataParser implements JobDataParser {
 
         // assign the binary data
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        bmpData.compress(Bitmap.CompressFormat.JPEG, 0, bos);
+        bmpData.compress(Bitmap.CompressFormat.JPEG, 50, bos);
         byte[] byteData = bos.toByteArray();
         bos.close();
 
