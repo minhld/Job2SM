@@ -77,14 +77,14 @@ public class JobHandler {
      * @param useCluster
      */
     public void dispatchJob(boolean useCluster, String dataPath, String jobPath) {
-        // exchange ACKs between the devices to get device status to support
-        // decision maker to select available peers
-        ACKExchanger exchanger = new ACKExchanger(this.mReceiver, this.serverHandler);
-        exchanger.execute();
-
-        try {
-            Thread.sleep(500);
-        } catch(Exception e) { }
+//        // exchange ACKs between the devices to get device status to support
+//        // decision maker to select available peers
+//        ACKExchanger exchanger = new ACKExchanger(this.mReceiver, this.serverHandler);
+//        exchanger.execute();
+//
+//        try {
+//            Thread.sleep(500);
+//        } catch(Exception e) { }
 
         // start dispatching jobs after decision maker select the available peers
         new JobDispatcher(context, mReceiver, serverHandler, dataParser,
